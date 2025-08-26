@@ -16,7 +16,7 @@
 #' res = fire.risk(landscape, 1)
 #' 
  
-fire.risk = function(land, ha.cell){
+fire.risk = function(land, orography, ha.cell){
   
   ## Susceptibility = gradient * land-cover type (it's 0 for urban and water)
   gradient = ifelse(orography$slope<=5, 2,
