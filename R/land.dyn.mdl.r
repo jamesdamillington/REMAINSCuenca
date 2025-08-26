@@ -393,7 +393,7 @@ land.dyn.mdl = function(scenDir, is.land.cover.change = TRUE, is.wildfire = TRUE
         land$tschg[land$cell.id %in% chg.cells] = 0
         # Pasture conversion
         visit.cells = c(visit.cells, chg.cells)
-        chg.cells = land.cover.change(land, orography, lc.trans = 5, 
+        chg.cells = land.cover.change(land, params, lc.trans = 5, 
                                       trgt.dmnd = lcc.demand$PastureConver[t], visit.cells = visit.cells)
         land$lct[land$cell.id %in% chg.cells] = "grass"
         land$tschg[land$cell.id %in% chg.cells] = 0
