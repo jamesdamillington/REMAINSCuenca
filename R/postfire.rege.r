@@ -22,7 +22,7 @@
 #' res = postfire.rege(landscape, params)
 #' 
 
-postfire.rege = function(land, params){
+postfire.rege = function(land, params, verbose = FALSE){
   
   ## Tracking the transition of burnt forest cells
   cat(" Post-fire regeneration", "\n") 
@@ -83,18 +83,20 @@ postfire.rege = function(land, params){
         y = (ptrans$shrub - prop.pine.elev$low*x)/prop.pine.elev$high
         w = 1-x
       } else{
-        cat(paste0("prop.pine.elev: ", prop.pine.elev, "\n"))
+        if(verbose){cat(paste0("prop.pine.elev: ", prop.pine.elev, "\n"))}
         #write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F)
         x=y=z=w=1
       }
-      cat(paste0("PINE - x:", x, " y:", y, " z:", z, " w:", w, "\n"))
-      if(sum(is.na(x))+sum(is.na(y))+sum(is.na(z))+sum(is.na(w))>0){
-        cat(paste0("x: ", x, "\n"))
-        cat(paste0("y: ", y, "\n"))
-        cat(paste0("z: ", z, "\n"))
-        cat(paste0("w: ", w, "\n"))
-        cat(paste0("prop.pine.elev: ", prop.pine.elev, "\n"))
-        #write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F)
+      if(verbose){
+        cat(paste0("PINE - x:", x, " y:", y, " z:", z, " w:", w, "\n"))
+        if(sum(is.na(x))+sum(is.na(y))+sum(is.na(z))+sum(is.na(w))>0){
+          cat(paste0("x: ", x, "\n"))
+          cat(paste0("y: ", y, "\n"))
+          cat(paste0("z: ", z, "\n"))
+          cat(paste0("w: ", w, "\n"))
+          cat(paste0("prop.pine.elev: ", prop.pine.elev, "\n"))
+          #write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F)
+        }
       }
       # to avoid the error 'NA in probability vector'
       x = ifelse(is.na(x)|is.infinite(x), 0, x)
@@ -140,18 +142,20 @@ postfire.rege = function(land, params){
         y = (ptrans$shrub - prop.oak.elev$low*x)/prop.oak.elev$high
         w = 1-x
       } else{
-        cat(paste0("prop.pine.elev: ", prop.pine.elev, "\n"))
+        if(verbose){cat(paste0("prop.pine.elev: ", prop.pine.elev, "\n"))}
         #write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F)
         x=y=z=w=1
       }
-      cat(paste0("OAK - x:", x, " y:", y, " z:", z, " w:", w, "\n"))
-      if(sum(is.na(x))+sum(is.na(y))+sum(is.na(z))+sum(is.na(w))>0){
-        cat(paste0("x: ", x, "\n"))
-        cat(paste0("y: ", y, "\n"))
-        cat(paste0("z: ", z, "\n"))
-        cat(paste0("w: ", w, "\n"))
-        cat(paste0("prop.pine.elev: ", prop.oak.elev, "\n"))
-        #write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F, append = F)
+      if(verbose){
+        cat(paste0("OAK - x:", x, " y:", y, " z:", z, " w:", w, "\n"))
+        if(sum(is.na(x))+sum(is.na(y))+sum(is.na(z))+sum(is.na(w))>0){
+          cat(paste0("x: ", x, "\n"))
+          cat(paste0("y: ", y, "\n"))
+          cat(paste0("z: ", z, "\n"))
+          cat(paste0("w: ", w, "\n"))
+          cat(paste0("prop.pine.elev: ", prop.oak.elev, "\n"))
+          #write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F, append = F)
+        }
       }
       # to avoid the error 'NA in probability vector'
       x = ifelse(is.na(x)|is.infinite(x), 0, x)

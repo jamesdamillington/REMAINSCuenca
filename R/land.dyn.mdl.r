@@ -243,10 +243,10 @@ land.dyn.mdl = function(scenDir, is.land.cover.change = TRUE, is.wildfire = TRUE
   }
   
   ## Create output folder  to write model's outputs and log files
-  if(write.outputs) dir.create(file.path(scenDir), showWarnings = F) 
-  if(save.land) dir.create(file.path(paste0(scenDir, "/landscape")), showWarnings = F) 
+  if(write.outputs) dir.create(file.path(scenDir), showWarnings = verbose) 
+  if(save.land) dir.create(file.path(paste0(scenDir, "/landscape")), showWarnings = verbose) 
   if(out.maps){
-    dir.create(file.path(paste0(scenDir, "/maps")), showWarnings = F) 
+    dir.create(file.path(paste0(scenDir, "/maps")), showWarnings = verbose) 
     land.cover.type = data.frame(lct.id = 1:10, lct = c("crop", "pine", "oak", "sparseveg", "shrub",
       "water", "grass", "urban", "shrub.to.pine", "shrub.to.oak")) 
   }
@@ -412,12 +412,12 @@ land.dyn.mdl = function(scenDir, is.land.cover.change = TRUE, is.wildfire = TRUE
         } else{
           track.lcc = rbind(track.lcc, aux)
         }
-        gc(verbose = FALSE)
+        gc(verbose = verbose)
       }
     
       ## 2. WILDFIRES
       if(is.wildfire & t %in% fire.schedule){
-        fires = wildfires(land, params, out.maps, verbose=F)
+        fires = wildfires(land, params, out.maps, verbose=verbose)
         if(length(fires$burnt.cells)>0){
           land$tschg[land$cell.id %in% fires$burnt.cells] = 0
           land$trans.type[land$cell.id %in% fires$burnt.cells] = "Fire"
@@ -460,7 +460,7 @@ land.dyn.mdl = function(scenDir, is.land.cover.change = TRUE, is.wildfire = TRUE
       ## 3. PRESCRIBED BURNS
       id.fire = 0
       if(is.prescribed.burn & t %in% pb.schedule){
-        pb = prescribed.burn(land, params, out.maps, verbose=F)
+        pb = prescribed.burn(land, params, out.maps, verbose=verbose)
         if(length(pb$burnt.cells)>0){
           land$tschg[land$cell.id %in% pb$burnt.cells] = 0
           land$trans.type[land$cell.id %in% pb$burnt.cells] = "PBurn"
@@ -502,7 +502,7 @@ land.dyn.mdl = function(scenDir, is.land.cover.change = TRUE, is.wildfire = TRUE
             }
           }
         }
-        gc(verbose = FALSE)
+        gc(verbose = verbose)
       }
      
       ## 5. FOREST RECOVER
@@ -523,7 +523,7 @@ land.dyn.mdl = function(scenDir, is.land.cover.change = TRUE, is.wildfire = TRUE
         } else{
           track.forest.recover = rbind(track.forest.recover, data.frame(run = irun, year = t, recover$res))
         }
-        gc(verbose = FALSE)
+        gc(verbose = verbose)
       }
       
       ## 6. AFFORESTATION
@@ -540,7 +540,7 @@ land.dyn.mdl = function(scenDir, is.land.cover.change = TRUE, is.wildfire = TRUE
         } else{
           track.afforest = rbind(track.afforest, data.frame(run = irun, year = t, afforest.cells[[3]]))
         }
-        gc(verbose = FALSE)
+        gc(verbose = verbose)
       }
        
       ## 7. ENCROACHMENT
@@ -554,7 +554,7 @@ land.dyn.mdl = function(scenDir, is.land.cover.change = TRUE, is.wildfire = TRUE
         } else{
           track.encroach = rbind(track.encroach, data.frame(run = irun, year = t, encroach.cells[[2]]))
         }
-        gc(verbose = FALSE)
+        gc(verbose = verbose)
       }
       
       ## 8. AGING
@@ -618,7 +618,7 @@ land.dyn.mdl = function(scenDir, is.land.cover.change = TRUE, is.wildfire = TRUE
         writeRaster(out.raster, filename = paste0(scenDir, "/maps/land.cover.type_run", irun, "time", t, ".tif"), overwrite = T, format = "GTiff")
       }
       ## Free memory
-      gc(verbose = FALSE) 
+      gc(verbose = verbose) 
     }
   
     if(write.outputs){
