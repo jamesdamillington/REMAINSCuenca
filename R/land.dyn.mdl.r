@@ -642,7 +642,11 @@ land.dyn.mdl = function(scenDir, is.land.cover.change = TRUE, is.wildfire = TRUE
     if(write.outputs){
       names(track.oak.age)[3] = names(track.pine.age)[3] = "age"
       names(track.unburnt.oak.age)[3] = names(track.unburnt.pine.age)[3] = "age"
-      names(track.forest.age.burnt)[5] = names(track.forest.age.supp)[5] = "age"
+      if(is.wildfire){
+        names(track.forest.age.burnt)[5] = names(track.forest.age.supp)[5] = "age"
+        write.table(track.forest.age.burnt, paste0(scenDir, "/forest.age.burnt", params$outputs.suffix, ".txt"), row.names=F, quote=F, sep="\t", append=ifelse(irun==1,F,T), col.names=ifelse(irun==1,T,F))
+        write.table(track.forest.age.supp, paste0(scenDir, "/forest.age.supp", params$outputs.suffix, ".txt"), row.names=F, quote=F, sep="\t", append=ifelse(irun==1,F,T), col.names=ifelse(irun==1,T,F))
+      }
       write.table(track.land, paste0(scenDir, "/land", params$outputs.suffix, ".txt"), row.names=F, quote=F, sep="\t", append=ifelse(irun==1,F,T), col.names=ifelse(irun==1,T,F))
       write.table(track.oak.age, paste0(scenDir, "/oak.age", params$outputs.suffix, ".txt"), row.names=F, quote=F, sep="\t", append=ifelse(irun==1,F,T), col.names=ifelse(irun==1,T,F))
       write.table(track.pine.age, paste0(scenDir, "/pine.age", params$outputs.suffix, ".txt"), row.names=F, quote=F, sep="\t", append=ifelse(irun==1,F,T), col.names=ifelse(irun==1,T,F))
@@ -657,8 +661,6 @@ land.dyn.mdl = function(scenDir, is.land.cover.change = TRUE, is.wildfire = TRUE
       write.table(track.fires, paste0(scenDir, "/fires", params$outputs.suffix, ".txt"), row.names=F, quote=F, sep="\t", append=ifelse(irun==1,F,T), col.names=ifelse(irun==1,T,F))
       write.table(track.pb, paste0(scenDir, "/pburns", params$outputs.suffix, ".txt"), row.names=F, quote=F, sep="\t", append=ifelse(irun==1,F,T), col.names=ifelse(irun==1,T,F))
       write.table(track.lc.burnt.supp, paste0(scenDir, "/lc.burnt", params$outputs.suffix, ".txt"), row.names=F, quote=F, sep="\t", append=ifelse(irun==1,F,T), col.names=ifelse(irun==1,T,F))
-      write.table(track.forest.age.burnt, paste0(scenDir, "/forest.age.burnt", params$outputs.suffix, ".txt"), row.names=F, quote=F, sep="\t", append=ifelse(irun==1,F,T), col.names=ifelse(irun==1,T,F))
-      write.table(track.forest.age.supp, paste0(scenDir, "/forest.age.supp", params$outputs.suffix, ".txt"), row.names=F, quote=F, sep="\t", append=ifelse(irun==1,F,T), col.names=ifelse(irun==1,T,F))
       write.table(track.lc.pburnt, paste0(scenDir, "/lc.pburnt", params$outputs.suffix, ".txt"), row.names=F, quote=F, sep="\t", append=ifelse(irun==1,F,T), col.names=ifelse(irun==1,T,F))
     }
     
