@@ -63,7 +63,7 @@ postfire.rege = function(land, params){
       ## modify the transition probabilities of shrub and sparseveg.
       ptrans$shrub = ptrans$shrub + pmax(0, ptrans$sparseveg-prop.pine.elev$high)
       ptrans$sparseveg = ptrans$sparseveg - pmax(0, ptrans$sparseveg-prop.pine.elev$high)
-      write.table(ptrans, file = "outputs/ptrans_pine.txt", quote=F, sep="\t", row.names = F, append = F)
+      #write.table(ptrans, file = "outputs/ptrans_pine.txt", quote=F, sep="\t", row.names = F, append = F)
       
       ## c. Find out the proportion of each new category according to 'ptrans'
       z = ptrans$sparseveg / prop.pine.elev$high
@@ -84,7 +84,7 @@ postfire.rege = function(land, params){
         w = 1-x
       } else{
         cat(paste0("prop.pine.elev: ", prop.pine.elev, "\n"))
-        write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F)
+        #write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F)
         x=y=z=w=1
       }
       cat(paste0("PINE - x:", x, " y:", y, " z:", z, " w:", w, "\n"))
@@ -94,7 +94,7 @@ postfire.rege = function(land, params){
         cat(paste0("z: ", z, "\n"))
         cat(paste0("w: ", w, "\n"))
         cat(paste0("prop.pine.elev: ", prop.pine.elev, "\n"))
-        write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F)
+        #write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F)
       }
       # to avoid the error 'NA in probability vector'
       x = ifelse(is.na(x)|is.infinite(x), 0, x)
@@ -120,7 +120,7 @@ postfire.rege = function(land, params){
       ## modify the transition probabilities of shrub and sparseveg
       ptrans$shrub = ptrans$shrub + pmax(0,  ptrans$sparseveg-prop.oak.elev$high)
       ptrans$sparseveg = ptrans$sparseveg - pmax(0,  ptrans$sparseveg-prop.oak.elev$high)
-      write.table(ptrans, file = "outputs/ptrans_oak.txt", quote=F, sep="\t", row.names = F, append = F)
+      #write.table(ptrans, file = "outputs/ptrans_oak.txt", quote=F, sep="\t", row.names = F, append = F)
       
       ## c. Find out the proportion of each new category according to 'ptrans'
       z = ptrans$sparseveg / prop.oak.elev$high
@@ -141,7 +141,7 @@ postfire.rege = function(land, params){
         w = 1-x
       } else{
         cat(paste0("prop.pine.elev: ", prop.pine.elev, "\n"))
-        write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F)
+        #write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F)
         x=y=z=w=1
       }
       cat(paste0("OAK - x:", x, " y:", y, " z:", z, " w:", w, "\n"))
@@ -151,7 +151,7 @@ postfire.rege = function(land, params){
         cat(paste0("z: ", z, "\n"))
         cat(paste0("w: ", w, "\n"))
         cat(paste0("prop.pine.elev: ", prop.oak.elev, "\n"))
-        write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F, append = F)
+        #write.table(ptrans, file = "outputs/ptrans.txt", quote=F, sep="\t", row.names = F, append = F)
       }
       # to avoid the error 'NA in probability vector'
       x = ifelse(is.na(x)|is.infinite(x), 0, x)
