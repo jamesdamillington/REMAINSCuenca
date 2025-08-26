@@ -243,7 +243,25 @@ land.dyn.mdl = function(scenDir, is.land.cover.change = TRUE, is.wildfire = TRUE
   }
   
   ## Create output folder  to write model's outputs and log files
-  if(write.outputs) dir.create(file.path(scenDir), showWarnings = verbose) 
+  if(write.outputs)  dir.create(file.path(scenDir), showWarnings = verbose)
+    
+  if(write.outputs) { 
+    sink(paste0(scenDir, "/inputs.txt"))
+    print(scenDir)
+    cat(paste0('\n','is.land.cover.change: ', is.land.cover.change,
+               '\n','is.wildfire: ', is.wildfire,
+               '\n','is.prescribed.burn: ', is.prescribed.burn,
+               '\n','is.postfire.rege: ', is.postfire.rege,
+               '\n','is.forest.recover: ', is.forest.recover,
+               '\n','is.afforestation: ', is.afforestation,
+               '\n','is.encroachment: ', is.encroachment))
+    cat(paste0('\n','\n',"lcc.demand",'\n'))
+    print(lcc.demand)
+    cat(paste0('\n','\n',"params",'\n'))
+    print(params)
+    sink()
+  }
+    
   if(save.land) dir.create(file.path(paste0(scenDir, "/landscape")), showWarnings = verbose) 
   if(out.maps){
     dir.create(file.path(paste0(scenDir, "/maps")), showWarnings = verbose) 

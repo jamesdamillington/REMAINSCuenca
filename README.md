@@ -2,7 +2,7 @@
 
 Fork of the REMAINS model with intention of applying to the Cuenca region. Original readme below. 
 
-Versions:
+## Versions:
 - [v0.1-alpha](https://github.com/jamesdamillington/REMAINSCuenca/releases/tag/v0.1-alpha): fixed some bugs (e.g. [this](https://github.com/jamesdamillington/REMAINSCuenca/commit/cdc2d02de7497326047d34a2f805f876595b80f1) and [this](https://github.com/jamesdamillington/REMAINSCuenca/commit/dfe58286dd2dac9e76d5a246ba8690ce89dc2664)) 
 
 Script to run current working version (v0.1-alpha)
