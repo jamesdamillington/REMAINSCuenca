@@ -1,6 +1,6 @@
 # The REMAINS model (Cuenca) 
 
-Fork of the REMAINS model with intention of applying to the Cuenca region. Original readme below. 
+[Disconnected](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/detaching-a-fork) fork of the [REMAINS model](https://github.com/FirESmart-Project/REMAINS) with intention of applying to the Cuenca region. Original readme below. 
 
 ## Versions:
 - [v0.1-alpha](https://github.com/jamesdamillington/REMAINSCuenca/releases/tag/v0.1-alpha): fixed some bugs (e.g. [this](https://github.com/jamesdamillington/REMAINSCuenca/commit/cdc2d02de7497326047d34a2f805f876595b80f1) and [this](https://github.com/jamesdamillington/REMAINSCuenca/commit/dfe58286dd2dac9e76d5a246ba8690ce89dc2664)) 
@@ -40,7 +40,7 @@ res = land.dyn.mdl(scenDir = scenDir, is.land.cover.change = TRUE, is.wildfire =
 
 ---------------
 
-# The REMAINS model (Cuenca) 
+# The REMAINS model 
 
 ## Model's aim
 
